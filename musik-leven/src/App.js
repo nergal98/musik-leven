@@ -1,23 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
-import Contacto from './publica/paginas/estaticas/contacto/Contacto';
-
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link
-} from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Contacto from './components/Contacto';
+import Home from './components/Home';
 
 function App() {
   return (
-    <>
-
-      <Router>
-        <Route path="/contacto" element={<Contacto />}></Route>
-      </Router>
-
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/contacto" element={<Contacto />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </Router>
   );
 }
 
