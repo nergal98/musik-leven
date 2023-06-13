@@ -1,0 +1,48 @@
+.hero {
+  height: 650px;
+  background-image: url("../../../../../assets/img/hero.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* Agrega esto para que el texto no se desplace al desplazarse */
+  padding-top: 60px; /* Ajusta esto al mismo valor que la altura de tu cabecera */
+}
+
+.hero__text {
+  position: absolute; /* Agrega esto para que el texto quede fijo en la página */
+  top: 50%; /* Centra el texto verticalmente */
+  left: 50%; /* Centra el texto horizontalmente */
+  transform: translate(-50%, -50%); /* Centra el texto horizontal y verticalmente */
+  color: whitesmoke;
+  text-align: center;
+  background-color: white;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  border: 2px solid white;
+  background-color: #49386da6;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.hero__text h1 {
+  font-size: 1.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .hero__text {
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .hero__text {
+    width: 50%;
+  }
+}
