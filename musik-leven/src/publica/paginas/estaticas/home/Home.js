@@ -17,15 +17,6 @@ function HomePage() {
     <div>
       <HomeHero />
 
-      <nav className="nav">
-        <button className="button-secondary" onClick={goToLoginForm}>
-          Login
-        </button>
-        <button className="button-primary" onClick={() => navigate("/home")}>
-          Entrar
-        </button>
-      </nav>
-
       <main className="main">
         <section className="main__section1">
           <h2>Descubre todos los festivales de este verano!</h2>
