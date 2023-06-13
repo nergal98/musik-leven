@@ -1,15 +1,17 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+
 //import "./HeaderLogin.css";
-import image from "../../assets/img/tomorrowland.jpg";
-import image2 from "../../assets/img/mysteryland.avif";
-import image3 from "../../assets/img/daydream.jpg";
-import image4 from "../../assets/img/dreambeach.jpg";
+import image from "../../../../assets/img/tomorrowland.jpg";
+import image2 from "../../../../assets/img/mysteryland.avif";
+import image3 from "../../../../assets/img/daydream.jpg";
+import image4 from "../../../../assets/img/dreambeach.jpg";
 import HomeHero from "./home-hero/HomeHero";
+import "./Home.css";
+
 
 
 function HomePage() {
-  let navigate = useNavigate();
+ 
 
   //const goToLoginForm = () => {};
 

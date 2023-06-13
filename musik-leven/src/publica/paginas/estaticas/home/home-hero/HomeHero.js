@@ -1,4 +1,6 @@
 import React from "react";
+import "./HomeHero.css";
+
 
 function HomeHero() {
   return (
