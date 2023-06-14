@@ -40,6 +40,9 @@ const Cabecera = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
+            <Link to="/quienes-somos">Quiénes somos</Link>
+          </li>
+          <li>
             <div className="dropdown">
               <a href="#!" className="dropbtn">
                 {" "}
@@ -49,9 +52,7 @@ const Cabecera = () => {
               <div className="dropdown-content">
                 <Link to="/canciones">Canciones</Link>
                 <Link to="/artistas">Artistas</Link>
-                <li>
-                  <Link to="/eventos">Eventos</Link>
-                </li>
+                <Link to="/eventos">Eventos</Link>
               </div>
             </div>
           </li>
