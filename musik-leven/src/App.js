@@ -7,7 +7,7 @@ import NotFound from "./publica/paginas/estaticas/not-found/NotFound";
 import Cabecera from "./layout/cabecera/Cabecera";
 import Footer from "./layout/footer/Footer";
 import Eventos from "./publica/paginas/dinamicas/eventos/eventos";
-import Evento from "./publica/paginas/dinamicas/eventos/evento";
+import Evento from "./publica/paginas/dinamicas/eventos/evento/evento";
 import "./App.css";
 
 function App() {
