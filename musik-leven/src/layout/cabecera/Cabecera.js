@@ -52,9 +52,7 @@ const Cabecera = () => {
               <div className="dropdown-content">
                 <Link to="/canciones">Canciones</Link>
                 <Link to="/artistas">Artistas</Link>
-                <li>
-                  <Link to="/eventos">Eventos</Link>
-                </li>
+                <Link to="/eventos">Eventos</Link>
               </div>
             </div>
           </li>
