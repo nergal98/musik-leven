@@ -4,18 +4,20 @@ function Contacto() {
     return ( //devuelve el html que forma parte de la página contacto
 
         <>
-            <header id="header-contacto">
-                <h2>Pagina de contacto</h2>
-            </header>
+            <main>
 
-            <section id="section-contacto">
-                <div id="form-contacto">
+                <h2>Página contacto</h2>
 
-                </div>
-                <div id="mapa-contacto">
-                    <Map />
-                </div>
-            </section>
+                <section id="section-contacto">
+                    <div id="form-contacto">
+
+                    </div>
+                    <div id="mapa-contacto">
+                        <Map />
+                    </div>
+                </section>
+
+            </main>
         </>
 
     );
