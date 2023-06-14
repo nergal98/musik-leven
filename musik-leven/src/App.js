@@ -8,6 +8,7 @@ import Cabecera from "./layout/cabecera/Cabecera";
 import Footer from "./layout/footer/Footer";
 import Eventos from "./publica/paginas/dinamicas/eventos/eventos";
 import Evento from "./publica/paginas/dinamicas/eventos/evento";
+import EventForm from "./privada/eventos/formulario/EventForm";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/sobre-nosotros" element={<SobreNosotros />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/eventos/nuevo" element={<EventForm />} />
       </Routes>
       <Footer />
     </Router>
