@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import eventos from '../../../../data/eventos';
+import eventos from '../../../../../data/eventos';
 import './evento.css';
 
 const EventItem = () => {
