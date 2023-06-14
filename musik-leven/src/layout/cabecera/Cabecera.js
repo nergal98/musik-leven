@@ -59,7 +59,7 @@ const Cabecera = () => {
             <Link to="/contacto">Contacto</Link>
           </li>
           <li>
-            <Link to="/quienes-somos">Quiénes somos</Link>
+            <Link to="/sobre-nosotros">Quiénes somos</Link>
           </li>
           <li>
             <Link to="/login">Log In</Link>
