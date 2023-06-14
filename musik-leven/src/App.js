@@ -8,6 +8,8 @@ import Cabecera from "./layout/cabecera/Cabecera";
 import Footer from "./layout/footer/Footer";
 import Eventos from "./publica/paginas/dinamicas/eventos/eventos";
 import Evento from "./publica/paginas/dinamicas/eventos/evento";
+import Artistas from "./publica/paginas/dinamicas/artistas/artistas";
+import Artista from "./publica/paginas/dinamicas/artistas/artista/artista";
 import "./App.css";
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/eventos" element={<Eventos />} />
+          <Route path="/artistas" element={<Artistas />} />
+          <Route path="/artistas/:id" element={<Artista />} />
           <Route path="/eventos/:id" element={<Evento />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/sobre-nosotros" element={<SobreNosotros />} />

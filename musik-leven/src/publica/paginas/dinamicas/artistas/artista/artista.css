@@ -1,0 +1,48 @@
+body {
+    background-color: #0000ff; /* Azul */
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .artist-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #222;
+    color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 800px;
+    margin: 20px auto;
+  }
+  
+  .artist-title {
+    font-size: 2.5em;
+    text-transform: uppercase;
+    text-align: center;
+    color: #1DB954; /* Verde Spotify */
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  .artist-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+  }
+  
+  .artist-img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  /* Pantallas pequeñas */
+  @media (max-width: 500px) {
+    .artist-details {
+      grid-template-columns: 1fr;
+    }
+  }
