@@ -1,4 +1,6 @@
+import Formulario from './formulario/Formulario';
 import Map from './mapa/Mapa';
+import './Contacto.css';
 function Contacto() {
 
     return ( //devuelve el html que forma parte de la página contacto
@@ -10,7 +12,7 @@ function Contacto() {
 
                 <section id="section-contacto">
                     <div id="form-contacto">
-
+                        <Formulario />
                     </div>
                     <div id="mapa-contacto">
                         <Map />
