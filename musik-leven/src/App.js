@@ -1,59 +1,71 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  useLocation,
+  useRoutes,
+} from "react-router-dom";
 import Contacto from "./publica/paginas/estaticas/contacto/Contacto";
 import Home from "./publica/paginas/estaticas/home/Home";
 import SobreNosotros from "./publica/paginas/estaticas/sobre-nosotros/SobreNosotros";
 import NotFound from "./publica/paginas/estaticas/not-found/NotFound";
 import Cabecera from "./layout/cabecera/Cabecera";
 import Footer from "./layout/footer/Footer";
-import Canciones from "./publica/paginas/dinamicas/canciones/canciones";
-import Cancion from "./publica/paginas/dinamicas/canciones/cancion/cancion";
 import Eventos from "./publica/paginas/dinamicas/eventos/eventos";
 import Evento from "./publica/paginas/dinamicas/eventos/evento/evento";
 import Artistas from "./publica/paginas/dinamicas/artistas/artistas";
 import Artista from "./publica/paginas/dinamicas/artistas/artista/artista";
 import "./App.css";
 import CabeceraPrivada from "./layout-privado/cabecera-privada/CabeceraPrivada";
-import EventosPrivados from "./privada/eventos-privado/EventosPrivados";
+import FormularioEvento from "./privada/eventos-privado/formulario/EventForm";
+import ListaEventos from "./privada/eventos-privado/ListaEventos";
+import CancionesList from "./publica/paginas/dinamicas/canciones/canciones";
+import CancionItem from "./publica/paginas/dinamicas/canciones/cancion/cancion";
 
 function MainContent() {
   const location = useLocation();
-
   let cabecera;
-  if (location.pathname.startsWith('/privado')) {
+
+  if (location.pathname.startsWith("/privado")) {
     cabecera = <CabeceraPrivada />;
   } else {
     cabecera = <Cabecera />;
   }
 
+  let routes = useRoutes([
+    {
+      path: "/",
+      children: [
+        { path: "", element: <Home /> },
+        { path: "canciones", element: <CancionesList /> },
+        { path: "canciones/:id", element: <CancionItem /> },
+        { path: "artistas", element: <Artistas /> },
+        { path: "artistas/:id", element: <Artista /> },
+        { path: "eventos", element: <Eventos /> },
+        { path: "eventos/:id", element: <Evento /> },
+        { path: "contacto", element: <Contacto /> },
+        { path: "sobre-nosotros", element: <SobreNosotros /> },
+        { path: "*", element: <NotFound /> },
+      ],
+    },
+    {
+      path: "privado/*",
+      children: [
+        { path: "", element: <Home /> },
+        { path: "eventos-privado", element: <ListaEventos /> },
+        { path: "eventos-privado/nuevo", element: <FormularioEvento /> },
+        { path: "eventos-privado/editar/:id", element: <FormularioEvento /> },
+      ],
+    },
+  ]);
+
   return (
     <div className="App">
       {cabecera}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/privado" element={<Home />} />
-        <Route path="/eventos" element={<Eventos />} />
-        <Route path="/artistas" element={<Artistas />} />
-        <Route path="/artistas/:id" element={<Artista />} />
-        <Route path="/eventos/:id" element={<Evento />} />
-        <Route path="/contacto" element={<Contacto />} />
-        <Route path="/sobre-nosotros" element={<SobreNosotros />} />
-      
-        
-        <Route path="/privado/eventos-privado" element={<EventosPrivados />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      {routes}
       <Footer />
     </div>
   );
 }
-
-
-
-
-
-
-
 
 function App() {
   return (

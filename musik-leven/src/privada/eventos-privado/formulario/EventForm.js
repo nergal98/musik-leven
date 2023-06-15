@@ -1,155 +1,209 @@
-import React, { useState } from "react";
+import React from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import Validator from "./validator/Validator";
 import "./EventForm.css";
 
-function EventForm() {
-  const [form, setForm] = useState({
-    id: "",
-    nombre: "",
+function FormularioEvento() {
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const isEdit = id !== undefined;
+
+  const [state, setState] = React.useState({
     lugar: "",
-    fecha: "",
-    descripcion: "",
     genero: "",
     ciudad: "",
-    foto: "",
-    organizador: "",
     precio: "",
+    fecha: "",
+    organizador: "",
   });
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  const [errors, setErrors] = React.useState({});
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    for (let field in form) {
-      if (!form[field]) {
-        alert(`Por favor, rellena el campo de ${field}`);
-        return;
-      }
-    }
-
-    if (
-      !/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(form.organizador)
-    ) {
-      alert("Por favor, introduce un organizador válido.");
-      return;
-    }
-
-    if (!/^\d+(\.\d{1,2})?$/.test(form.precio)) {
-      alert("Por favor, introduce un precio válido. Máximo dos decimales.");
-      return;
-    }
-
-    if (!/\d{4}-\d{2}-\d{2}/.test(form.fecha)) {
-      alert("Por favor, introduce una fecha válida (YYYY-MM-DD).");
-      return;
-    }
-
-    if (
-      !/^https?:\/\/[\w.\-]+(\.[\w\-]+)+[/\w\-._~:/?#[\]@!$&'()*+,;=]*$/.test(
-        form.foto
-      )
-    ) {
-      alert("Por favor, introduce una URL válida para la foto.");
-      return;
-    }
-
-    localStorage.setItem(`event_${form.id}`, JSON.stringify(form));
-    alert("Evento registrado con éxito!");
-    setForm({
-      id: "",
-      nombre: "",
-      lugar: "",
-      fecha: "",
-      descripcion: "",
-      genero: "",
-      ciudad: "",
-      foto: "",
-      organizador: "",
-      precio: "",
+  const handleInputChange = (event) => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.value,
     });
   };
 
+  React.useEffect(() => {
+    if (isEdit) {
+      const eventos = JSON.parse(localStorage.getItem("eventos")) || [];
+      const evento = eventos[id];
+
+      if (evento) {
+        setState(evento);
+      } else {
+        // Manejar el caso en que no se encuentre el evento
+      }
+    }
+  }, [isEdit, id]);
+
+  const validateForm = () => {
+    let errors = {};
+    let formIsValid = true;
+
+    errors.lugar = new Validator(state.lugar)
+      .isRequired("Por favor, introduce el lugar del evento.")
+      .isLength(
+        1,
+        100,
+        "El nombre del lugar no puede exceder de 100 caracteres."
+      )
+      .getErrors();
+
+    errors.genero = new Validator(state.genero)
+      .isRequired("Por favor, introduce el género del evento.")
+      .getErrors();
+
+    errors.ciudad = new Validator(state.ciudad)
+      .isRequired("Por favor, introduce la ciudad del evento.")
+      .getErrors();
+
+    errors.precio = new Validator(state.precio)
+      .isRequired("Por favor, introduce el precio del evento.")
+      .isNumber("Por favor, introduce un precio válido.")
+      .getErrors();
+
+    errors.fecha = new Validator(state.fecha)
+      .isRequired("Por favor, introduce la fecha del evento.")
+      .isDate("Por favor, introduce una fecha válida. Formato: YYYY-MM-DD")
+      .getErrors();
+
+    errors.organizador = new Validator(state.organizador)
+      .isRequired("Por favor, introduce el organizador del evento.")
+      .getErrors();
+
+    setErrors(errors);
+
+    for (let field in errors) {
+      if (errors[field].length > 0) {
+        formIsValid = false;
+        break;
+      }
+    }
+
+    return formIsValid;
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (validateForm()) {
+      const eventos = JSON.parse(localStorage.getItem("eventos")) || [];
+      if (isEdit) {
+        eventos[id] = state;
+      } else {
+        eventos.push(state);
+      }
+      localStorage.setItem("eventos", JSON.stringify(eventos));
+      navigate("/privado/eventos-privado"); // Aquí está el cambio
+    }
+  };
   return (
-    <div className="eventForm">
-      <h1>Registrar Evento</h1>
+    <div className="formulario-evento-container">
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="id"
-          value={form.id}
-          onChange={handleChange}
-          placeholder="ID del Evento"
-        />
-        <input
-          type="text"
-          name="nombre"
-          value={form.nombre}
-          onChange={handleChange}
-          placeholder="Nombre del Evento"
-        />
+        <label htmlFor="lugar">Lugar</label>
         <input
           type="text"
           name="lugar"
-          value={form.lugar}
-          onChange={handleChange}
-          placeholder="Lugar del Evento"
+          id="lugar"
+          placeholder="Lugar del evento"
+          value={state.lugar}
+          onChange={handleInputChange}
         />
-        <input
-          type="date"
-          name="fecha"
-          value={form.fecha}
-          onChange={handleChange}
-          placeholder="Fecha del Evento"
-        />
-        <textarea
-          name="descripcion"
-          value={form.descripcion}
-          onChange={handleChange}
-          placeholder="Descripción del Evento"
-        />
+        {errors.lugar &&
+          errors.lugar.map((error, i) => (
+            <p key={i} style={{ color: "red" }}>
+              {error}
+            </p>
+          ))}
+        <label htmlFor="genero">Género</label>
         <input
           type="text"
           name="genero"
-          value={form.genero}
-          onChange={handleChange}
-          placeholder="Género del Evento"
+          id="genero"
+          placeholder="Género del evento"
+          value={state.genero}
+          onChange={handleInputChange}
         />
+        {errors.genero &&
+          errors.genero.map((error, i) => (
+            <p key={i} style={{ color: "red" }}>
+              {error}
+            </p>
+          ))}
+
+        <label htmlFor="ciudad">Ciudad</label>
         <input
           type="text"
           name="ciudad"
-          value={form.ciudad}
-          onChange={handleChange}
-          placeholder="Ciudad del Evento"
+          id="ciudad"
+          placeholder="Ciudad del evento"
+          value={state.ciudad}
+          onChange={handleInputChange}
         />
+        {errors.ciudad &&
+          errors.ciudad.map((error, i) => (
+            <p key={i} style={{ color: "red" }}>
+              {error}
+            </p>
+          ))}
+
+        <label htmlFor="precio">Precio</label>
         <input
           type="text"
-          name="foto"
-          value={form.foto}
-          onChange={handleChange}
-          placeholder="URL de la Foto del Evento"
+          name="precio"
+          id="precio"
+          placeholder="Precio del evento"
+          value={state.precio}
+          onChange={handleInputChange}
         />
+        {errors.precio &&
+          errors.precio.map((error, i) => (
+            <p key={i} style={{ color: "red" }}>
+              {error}
+            </p>
+          ))}
+
+        <label htmlFor="fecha">Fecha</label>
+        <input
+          type="date"
+          name="fecha"
+          id="fecha"
+          placeholder="Fecha del evento"
+          value={state.fecha}
+          onChange={handleInputChange}
+        />
+        {errors.fecha &&
+          errors.fecha.map((error, i) => (
+            <p key={i} style={{ color: "red" }}>
+              {error}
+            </p>
+          ))}
+
+        <label htmlFor="organizador">Organizador</label>
         <input
           type="text"
           name="organizador"
-          value={form.organizador}
-          onChange={handleChange}
-          placeholder="Email del Organizador del Evento"
+          id="organizador"
+          placeholder="Organizador del evento"
+          value={state.organizador}
+          onChange={handleInputChange}
         />
-        <input
-          type="number"
-          name="precio"
-          value={form.precio}
-          onChange={handleChange}
-          placeholder="Precio del Evento"
-          step="0.01"
-          min="0"
-        />
-        <button type="submit">Registrar Evento</button>
+        {errors.organizador &&
+          errors.organizador.map((error, i) => (
+            <p key={i} style={{ color: "red" }}>
+              {error}
+            </p>
+          ))}
+
+        <button type="submit">{isEdit ? "Actualizar" : "Guardar"}</button>
+        <button type="button" onClick={() => navigate(-1)}>
+          Cancelar
+        </button>
       </form>
     </div>
   );
 }
 
-export default EventForm;
+export default FormularioEvento;

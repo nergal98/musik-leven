@@ -1,0 +1,109 @@
+.lista-eventos-container {
+  margin: 2em auto;
+  padding: 20px;
+  background-color: #1a1a2e;
+  border-radius: 15px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 800px;
+}
+
+.lista-eventos-container ul {
+  list-style-type: none;
+  padding: 0;
+  justify-content: space-between;
+}
+
+.lista-eventos-container li {
+  margin-bottom: 20px;
+  color: #ffffff;
+  padding: 15px;
+  border: 1px solid #eee8aa;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0e153a;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.lista-eventos-container li:hover {
+  transform: scale(1.01);
+}
+
+.lista-eventos-container li button,
+.lista-eventos-container li a {
+  background-color: #e94560;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.lista-eventos-container li button:hover,
+.lista-eventos-container li a:hover {
+  background-color: #8e44ad;
+}
+
+.lista-eventos-container .crear-nuevo {
+  background-color: #008cba;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 20px;
+  margin: 1em 0;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.lista-eventos-container .crear-nuevo:hover {
+  background-color: #007bbd;
+}
+
+.lista-eventos-container .evento-info {
+  flex: 1 1 auto;
+  margin-right: 20px; /* margen para separar el texto de los botones */
+  overflow-wrap: break-word; /* Nueva propiedad para evitar el desbordamiento del texto */
+}
+.lista-eventos-container .botones {
+  display: flex;
+  gap: 10px;
+}
+
+@media (max-width: 768px) {
+  .lista-eventos-container {
+    margin: 1em;
+    padding: 1em;
+  }
+  .lista-eventos-container .evento-info {
+    margin-right: 0;
+    overflow-wrap: break-word; /* Asegurarse de que también se aplique en modo móvil */
+  }
+
+  .lista-eventos-container li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .lista-eventos-container li button,
+  .lista-eventos-container li a {
+    width: 100%;
+    margin: 0.5em 0;
+  }
+  .lista-eventos-container .evento-info,
+  .lista-eventos-container .botones {
+    flex: 1 0 100%;
+    margin-right: 0;
+  }
+
+  .lista-eventos-container .botones {
+    justify-content: space-evenly;
+  }
+}
