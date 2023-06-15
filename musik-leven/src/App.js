@@ -6,6 +6,8 @@ import SobreNosotros from "./publica/paginas/estaticas/sobre-nosotros/SobreNosot
 import NotFound from "./publica/paginas/estaticas/not-found/NotFound";
 import Cabecera from "./layout/cabecera/Cabecera";
 import Footer from "./layout/footer/Footer";
+import Canciones from "./publica/paginas/dinamicas/canciones/canciones";
+import Cancion from "./publica/paginas/dinamicas/canciones/cancion/cancion";
 import Eventos from "./publica/paginas/dinamicas/eventos/eventos";
 import Evento from "./publica/paginas/dinamicas/eventos/evento/evento";
 import Artistas from "./publica/paginas/dinamicas/artistas/artistas";
@@ -21,8 +23,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/eventos" element={<Eventos />} />
           <Route path="/artistas" element={<Artistas />} />
+          <Route path="/canciones" element={<Canciones />} />
           <Route path="/artistas/:id" element={<Artista />} />
           <Route path="/eventos/:id" element={<Evento />} />
+          <Route path="/canciones/:id" element={<Cancion />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/sobre-nosotros" element={<SobreNosotros />} />
           <Route path="*" element={<NotFound />} />

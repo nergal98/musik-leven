@@ -1,0 +1,42 @@
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.song-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  text-align: center
+}
+
+.song-list h1 {
+  color: #1db954; /* Verde Spotify */
+  font-size: 2.5em;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+.song-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.song-list li {
+  margin: 10px 0;
+  font-size: 1.2em;
+}
+
+.song-list a {
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s;
+}
+
+.song-list a:hover {
+  color: #1db954; /* Verde Spotify */
+}
