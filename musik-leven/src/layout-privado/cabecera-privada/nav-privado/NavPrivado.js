@@ -1,7 +1,7 @@
 // Nav.js
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./Nav.css";
+import "./NavPrivado.css";
 
 const Nav = ({ navRef }) => {
   const [isActive, setIsActive] = useState(false);
@@ -32,33 +32,16 @@ const Nav = ({ navRef }) => {
       </div>
       <ul className={isActive ? "active" : ""} ref={navRef}>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/privado">Home</Link>
         </li>
         <li>
-          <Link to="/sobre-nosotros">Quiénes somos</Link>
+          <Link to="/privado/canciones-privado">Canciones</Link>
         </li>
         <li>
-          <div className="dropdown">
-            <a href="#!" className="dropbtn">
-              {" "}
-              Secciones
-              <i className="fa fa-caret-down"></i>
-            </a>
-            <div className="dropdown-content">
-              <Link to="/canciones">Canciones</Link>
-              <Link to="/artistas">Artistas</Link>
-              <Link to="/eventos">Eventos</Link>
-            </div>
-          </div>
+          <Link to="/privado/contactos-privado">Artistas</Link>
         </li>
         <li>
-          <Link to="/contacto">Contacto</Link>
-        </li>
-        <li>
-          <Link to="/privado">Log In</Link>
-        </li>
-        <li>
-          <Link to="/signup">Sign Up</Link>
+          <Link to="/privado/eventos-privado">Eventos</Link>
         </li>
       </ul>
     </nav>
