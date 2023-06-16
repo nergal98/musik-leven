@@ -9,6 +9,9 @@ function FormularioEvento() {
   const isEdit = id !== undefined;
 
   const [state, setState] = React.useState({
+    nombre: "",
+    descripcion: "",
+    imagen: "",
     lugar: "",
     genero: "",
     ciudad: "",
@@ -74,6 +77,29 @@ function FormularioEvento() {
       .isRequired("Por favor, introduce el organizador del evento.")
       .getErrors();
 
+    errors.nombre = new Validator(state.nombre)
+      .isRequired("Por favor, introduce el nombre del evento.")
+      .isLength(
+        1,
+        100,
+        "El nombre del evento no puede exceder de 100 caracteres."
+      )
+      .getErrors();
+
+    errors.descripcion = new Validator(state.descripcion)
+      .isRequired("Por favor, introduce la descripción del evento.")
+      .isLength(
+        1,
+        500,
+        "La descripción del evento no puede exceder de 500 caracteres."
+      )
+      .getErrors();
+
+    errors.imagen = new Validator(state.imagen)
+      .isRequired("Por favor, introduce la URL de la imagen del evento.")
+      .isImageFile("Por favor, introduce una URL válida para la imagen.")
+      .getErrors();
+
     setErrors(errors);
 
     for (let field in errors) {
@@ -102,6 +128,36 @@ function FormularioEvento() {
   return (
     <div className="formulario-evento-container">
       <form onSubmit={handleSubmit}>
+        <label htmlFor="nombre">Nombre</label>
+        <input
+          type="text"
+          name="nombre"
+          id="nombre"
+          placeholder="Nombre del evento"
+          value={state.nombre}
+          onChange={handleInputChange}
+        />
+        {errors.nombre &&
+          errors.nombre.map((error, i) => (
+            <p key={i} style={{ color: "red" }}>
+              {error}
+            </p>
+          ))}
+
+        <label htmlFor="descripcion">Descripción</label>
+        <textarea
+          name="descripcion"
+          id="descripcion"
+          placeholder="Descripción del evento"
+          value={state.descripcion}
+          onChange={handleInputChange}
+        />
+        {errors.descripcion &&
+          errors.descripcion.map((error, i) => (
+            <p key={i} style={{ color: "red" }}>
+              {error}
+            </p>
+          ))}
         <label htmlFor="lugar">Lugar</label>
         <input
           type="text"
@@ -192,6 +248,22 @@ function FormularioEvento() {
         />
         {errors.organizador &&
           errors.organizador.map((error, i) => (
+            <p key={i} style={{ color: "red" }}>
+              {error}
+            </p>
+          ))}
+
+        <label htmlFor="imagen">Imagen</label>
+        <input
+          type="text"
+          name="imagen"
+          id="imagen"
+          placeholder="URL de la imagen del evento"
+          value={state.imagen}
+          onChange={handleInputChange}
+        />
+        {errors.imagen &&
+          errors.imagen.map((error, i) => (
             <p key={i} style={{ color: "red" }}>
               {error}
             </p>

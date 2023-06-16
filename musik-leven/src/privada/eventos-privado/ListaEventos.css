@@ -18,18 +18,16 @@
   margin-bottom: 20px;
   color: #ffffff;
   padding: 15px;
-  border: 1px solid #eee8aa;
+  border: 1px solid #ff7f7f;
   border-radius: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #0e153a;
-  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(145deg, #0c0f1b, #202837);
+  box-shadow: 5px 5px 15px #0a0c1a, -5px -5px 15px #2a2e4a;
   transition: all 0.3s ease-in-out;
 }
 
 .lista-eventos-container li:hover {
-  transform: scale(1.01);
+  transform: scale(1.05);
+  background: linear-gradient(145deg, #202837, #0c0f1b);
 }
 
 .lista-eventos-container li button,
@@ -67,43 +65,7 @@
   background-color: #007bbd;
 }
 
-.lista-eventos-container .evento-info {
-  flex: 1 1 auto;
-  margin-right: 20px; /* margen para separar el texto de los botones */
-  overflow-wrap: break-word; /* Nueva propiedad para evitar el desbordamiento del texto */
-}
 .lista-eventos-container .botones {
   display: flex;
   gap: 10px;
-}
-
-@media (max-width: 768px) {
-  .lista-eventos-container {
-    margin: 1em;
-    padding: 1em;
-  }
-  .lista-eventos-container .evento-info {
-    margin-right: 0;
-    overflow-wrap: break-word; /* Asegurarse de que también se aplique en modo móvil */
-  }
-
-  .lista-eventos-container li {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .lista-eventos-container li button,
-  .lista-eventos-container li a {
-    width: 100%;
-    margin: 0.5em 0;
-  }
-  .lista-eventos-container .evento-info,
-  .lista-eventos-container .botones {
-    flex: 1 0 100%;
-    margin-right: 0;
-  }
-
-  .lista-eventos-container .botones {
-    justify-content: space-evenly;
-  }
 }
