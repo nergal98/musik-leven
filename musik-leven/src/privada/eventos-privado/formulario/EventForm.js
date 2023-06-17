@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Validator from "./validator/Validator";
+import Validator from "../../utilidades/validator/Validator";
 import "./EventForm.css";
 
 function FormularioEvento() {
@@ -66,6 +66,7 @@ function FormularioEvento() {
     errors.precio = new Validator(state.precio)
       .isRequired("Por favor, introduce el precio del evento.")
       .isNumber("Por favor, introduce un precio válido.")
+      .hasMaxTwoDecimals("El precio no puede tener más de dos decimales.")
       .getErrors();
 
     errors.fecha = new Validator(state.fecha)
@@ -103,7 +104,7 @@ function FormularioEvento() {
     setErrors(errors);
 
     for (let field in errors) {
-      if (errors[field].length > 0) {
+      if (errors[field]) {
         formIsValid = false;
         break;
       }
@@ -137,12 +138,7 @@ function FormularioEvento() {
           value={state.nombre}
           onChange={handleInputChange}
         />
-        {errors.nombre &&
-          errors.nombre.map((error, i) => (
-            <p key={i} style={{ color: "red" }}>
-              {error}
-            </p>
-          ))}
+        {errors.nombre && <p style={{ color: "red" }}>{errors.nombre}</p>}
 
         <label htmlFor="descripcion">Descripción</label>
         <textarea
@@ -152,12 +148,10 @@ function FormularioEvento() {
           value={state.descripcion}
           onChange={handleInputChange}
         />
-        {errors.descripcion &&
-          errors.descripcion.map((error, i) => (
-            <p key={i} style={{ color: "red" }}>
-              {error}
-            </p>
-          ))}
+        {errors.descripcion && (
+          <p style={{ color: "red" }}>{errors.descripcion}</p>
+        )}
+
         <label htmlFor="lugar">Lugar</label>
         <input
           type="text"
@@ -167,12 +161,7 @@ function FormularioEvento() {
           value={state.lugar}
           onChange={handleInputChange}
         />
-        {errors.lugar &&
-          errors.lugar.map((error, i) => (
-            <p key={i} style={{ color: "red" }}>
-              {error}
-            </p>
-          ))}
+        {errors.lugar && <p style={{ color: "red" }}>{errors.lugar}</p>}
         <label htmlFor="genero">Género</label>
         <input
           type="text"
@@ -182,13 +171,7 @@ function FormularioEvento() {
           value={state.genero}
           onChange={handleInputChange}
         />
-        {errors.genero &&
-          errors.genero.map((error, i) => (
-            <p key={i} style={{ color: "red" }}>
-              {error}
-            </p>
-          ))}
-
+        {errors.genero && <p style={{ color: "red" }}>{errors.genero}</p>}
         <label htmlFor="ciudad">Ciudad</label>
         <input
           type="text"
@@ -198,29 +181,18 @@ function FormularioEvento() {
           value={state.ciudad}
           onChange={handleInputChange}
         />
-        {errors.ciudad &&
-          errors.ciudad.map((error, i) => (
-            <p key={i} style={{ color: "red" }}>
-              {error}
-            </p>
-          ))}
-
+        {errors.ciudad && <p style={{ color: "red" }}>{errors.ciudad}</p>}
         <label htmlFor="precio">Precio</label>
         <input
-          type="text"
+          type="number"
+          step="0.01"
           name="precio"
           id="precio"
           placeholder="Precio del evento"
           value={state.precio}
           onChange={handleInputChange}
         />
-        {errors.precio &&
-          errors.precio.map((error, i) => (
-            <p key={i} style={{ color: "red" }}>
-              {error}
-            </p>
-          ))}
-
+        {errors.precio && <p style={{ color: "red" }}>{errors.precio}</p>}
         <label htmlFor="fecha">Fecha</label>
         <input
           type="date"
@@ -230,12 +202,7 @@ function FormularioEvento() {
           value={state.fecha}
           onChange={handleInputChange}
         />
-        {errors.fecha &&
-          errors.fecha.map((error, i) => (
-            <p key={i} style={{ color: "red" }}>
-              {error}
-            </p>
-          ))}
+        {errors.fecha && <p style={{ color: "red" }}>{errors.fecha}</p>}
 
         <label htmlFor="organizador">Organizador</label>
         <input
@@ -246,12 +213,9 @@ function FormularioEvento() {
           value={state.organizador}
           onChange={handleInputChange}
         />
-        {errors.organizador &&
-          errors.organizador.map((error, i) => (
-            <p key={i} style={{ color: "red" }}>
-              {error}
-            </p>
-          ))}
+        {errors.organizador && (
+          <p style={{ color: "red" }}>{errors.organizador}</p>
+        )}
 
         <label htmlFor="imagen">Imagen</label>
         <input
@@ -262,12 +226,7 @@ function FormularioEvento() {
           value={state.imagen}
           onChange={handleInputChange}
         />
-        {errors.imagen &&
-          errors.imagen.map((error, i) => (
-            <p key={i} style={{ color: "red" }}>
-              {error}
-            </p>
-          ))}
+        {errors.imagen && <p style={{ color: "red" }}>{errors.imagen}</p>}
 
         <button type="submit">{isEdit ? "Actualizar" : "Guardar"}</button>
         <button type="button" onClick={() => navigate(-1)}>

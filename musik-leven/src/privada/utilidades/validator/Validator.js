@@ -48,8 +48,19 @@ class Validator {
     return this;
   }
 
+  hasMaxTwoDecimals(msg) {
+    if (!/^(\d+\.?\d{0,2}|\.\d{1,2})$/.test(this.value)) {
+      this.results.push(msg);
+    }
+    return this;
+  }
+
   getErrors() {
-    return this.results;
+    return this.results.length > 0 ? this.results[0] : null;
+  }
+
+  hasErrors() {
+    return this.results.length > 0;
   }
 }
 

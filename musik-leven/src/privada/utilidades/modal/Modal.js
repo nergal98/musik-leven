@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './Modal.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./Modal.css";
 
 const Modal = ({ isOpen, onClose, children }) => {
   if (!isOpen) {
@@ -13,7 +13,7 @@ const Modal = ({ isOpen, onClose, children }) => {
         {children}
       </div>
     </div>,
-    document.getElementById('modal-root')
+    document.getElementById("modal-root")
   );
 };
 

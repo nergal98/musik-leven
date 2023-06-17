@@ -15,11 +15,11 @@
   padding: 20px;
   border-radius: 10px;
   max-width: 90%;
-  width: 400px; 
-  text-align: center; 
-  color: #333; 
-  font-family: "Arial", sans-serif; 
-  font-size: 20px; 
+  width: 400px;
+  text-align: center;
+  color: #333;
+  font-family: "Arial", sans-serif;
+  font-size: 20px;
 }
 
 .modal-content button {
@@ -33,11 +33,11 @@
 }
 
 .modal-content .confirm-button {
-  background: #ff7f7f; 
+  background: #ff7f7f;
 }
 
 .modal-content .confirm-button:hover {
-  background: #ff4f4f; 
+  background: #ff4f4f;
 }
 
 .modal-content .cancel-button {
@@ -45,11 +45,11 @@
 }
 
 .modal-content .cancel-button:hover {
-  background: #4f9fff; 
+  background: #4f9fff;
 }
 
 @media (max-width: 600px) {
   .modal-content {
-    width: 80%; 
+    width: 80%;
   }
 }

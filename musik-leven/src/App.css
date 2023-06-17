@@ -1,13 +1,14 @@
-body, html, #root, .App {
-  height: 100%;
-  margin: 0;
-}
-
 .App {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
-.App > footer {
-  margin-top: auto;
+main {
+  flex: 1 0 auto;
+}
+
+footer {
+  flex-shrink: 0;
+  margin-top: auto; 
 }

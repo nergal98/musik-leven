@@ -1,130 +1,129 @@
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #181818;
-    color: #fff;
-    box-sizing: border-box;
-    position: fixed; /* Nueva propiedad */
-    width: 100%; /* Para que ocupe toda la anchura */
-    height: 60px; /* Ajusta según tu diseño */
-    z-index: 100; /* Para asegurarte de que la cabecera está siempre encima del resto del contenido */
-    top: 0; /* Para asegurarte de que la cabecera está siempre en la parte superior */
-  }
-  
-  h1 {
-    color: #1db954; /* Verde Spotify para un toque de color */
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #181818;
+  color: #fff;
+  box-sizing: border-box;
+  position: fixed; /* Nueva propiedad */
+  width: 100%; /* Para que ocupe toda la anchura */
+  height: 60px; /* Ajusta según tu diseño */
+  z-index: 100; /* Para asegurarte de que la cabecera está siempre encima del resto del contenido */
+  top: 0; /* Para asegurarte de que la cabecera está siempre en la parte superior */
+}
+
+h1 {
+  color: #1db954; /* Verde Spotify para un toque de color */
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #1db954; /* Cambiar el color al pasar el ratón para indicar la interactividad */
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #181818;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: #fff;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: background 0.3s;
+}
+
+.dropdown-content a:hover {
+  background: #333;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+.dropbtn {
+  color: #fff;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.dropbtn:hover {
+  color: #1db954;
+}
+
+/* Estilos del botón de hamburguesa */
+.hamburger {
+  display: none; /* Oculta el botón de hamburguesa en pantallas grandes */
+  cursor: pointer;
+}
+
+.hamburger div {
+  width: 25px;
+  height: 2px;
+  background-color: #fff;
+  margin: 5px;
+}
+
+/* Estilos de la barra de navegación para dispositivos móviles */
+@media (max-width: 768px) {
   nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-  }
-  
-  nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  
-  nav ul li a:hover {
-    color: #1db954; /* Cambiar el color al pasar el ratón para indicar la interactividad */
-  }
-  
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
+    position: fixed;
+    top: 0;
+    right: -100%; /* Esconde el menú fuera de la pantalla */
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    width: 50%;
+    padding-top: 60px;
+    transition: right 0.3s;
     background-color: #181818;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    padding: 12px 16px;
     z-index: 1;
   }
-  
-  .dropdown-content a {
-    color: #fff;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    transition: background 0.3s;
+
+  nav ul.active {
+    right: 0; /* Muestra el menú cuando la clase .active se añade a la lista */
   }
-  
-  .dropdown-content a:hover {
-    background: #333;
-  }
-  
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-  
-  .dropdown:hover .dropbtn {
-    background-color: #3e8e41;
-  }
-  
-  .dropbtn {
-    color: #fff;
-    background-color: transparent;
+
+  .hamburger {
+    display: flex; /* Muestra el botón de hamburguesa en móviles */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 2rem;
+    height: 2rem;
+    background: transparent;
     border: none;
     cursor: pointer;
-    text-decoration: none;
-    transition: color 0.3s;
+    padding: 0;
+    z-index: 1;
   }
-  
-  .dropbtn:hover {
-    color: #1db954;
-  }
-  
-  /* Estilos del botón de hamburguesa */
-  .hamburger {
-    display: none; /* Oculta el botón de hamburguesa en pantallas grandes */
-    cursor: pointer;
-  }
-  
-  .hamburger div {
-    width: 25px;
-    height: 2px;
-    background-color: #fff;
-    margin: 5px;
-  }
-  
-  /* Estilos de la barra de navegación para dispositivos móviles */
-  @media (max-width: 768px) {
-    nav ul {
-      position: fixed;
-      top: 0;
-      right: -100%; /* Esconde el menú fuera de la pantalla */
-      flex-direction: column;
-      justify-content: flex-start;
-      height: 100%;
-      width: 50%;
-      padding-top: 60px;
-      transition: right 0.3s;
-      background-color: #181818;
-      z-index: 1;
-    }
-  
-    nav ul.active {
-      right: 0; /* Muestra el menú cuando la clase .active se añade a la lista */
-    }
-  
-    .hamburger {
-      display: flex; /* Muestra el botón de hamburguesa en móviles */
-      flex-direction: column;
-      justify-content: space-around;
-      width: 2rem;
-      height: 2rem;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      z-index: 1;
-    }
-  }
-  
+}

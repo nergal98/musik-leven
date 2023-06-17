@@ -1,13 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./ListaEventos.css";
-import Modal from "../Modal";
 
+import Modal from "../utilidades/modal/Modal";
+import Pagination from "../utilidades/paginator/Pagination";
+
+// Tu componente principal
 const ListaEventos = () => {
+  // Estados
   const [eventos, setEventos] = useState([]);
-  const [modalOpen, setModalOpen] = useState(false); // Nuevo estado para controlar la apertura del modal
-  const [eventoToDelete, setEventoToDelete] = useState(null); // Nuevo estado para almacenar el evento a eliminar
+  const [modalOpen, setModalOpen] = useState(false);
+  const [eventoToDelete, setEventoToDelete] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [eventsPerPage, setEventsPerPage] = useState(5);
 
+  const maxPageNums = 5;
+  const totalPages = Math.ceil(eventos.length / eventsPerPage);
+
+  // Lógica de paginación
+  const indexOfLastEvent = currentPage * eventsPerPage;
+  const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
+  const currentEvents = eventos.slice(indexOfFirstEvent, indexOfLastEvent);
+
+  // Carga de eventos
   useEffect(() => {
     const loadEventos = () => {
       try {
@@ -20,12 +35,28 @@ const ListaEventos = () => {
     };
     loadEventos();
   }, []);
+  useEffect(() => {
+    setCurrentPage((oldPage) => {
+      const newTotalPages = Math.ceil(eventos.length / eventsPerPage);
+      return Math.min(oldPage, newTotalPages);
+    });
+  }, [eventsPerPage]);
+
+  useEffect(() => {
+    const newTotalPages = Math.ceil(eventos.length / eventsPerPage);
+    if (currentPage > newTotalPages) {
+      setCurrentPage(newTotalPages);
+    } else if (currentPage < 1 && newTotalPages > 0) {
+      setCurrentPage(1);
+    }
+  }, [eventos, eventsPerPage, currentPage]);
 
   const handleDelete = (index) => {
+    // Calcula el índice correcto en la lista de todos los eventos
+    const realIndex = currentPage * eventsPerPage - eventsPerPage + index;
     setModalOpen(true);
-    setEventoToDelete(index);
+    setEventoToDelete(realIndex);
   };
-
   const confirmDelete = () => {
     let eventosCopy = [...eventos];
     eventosCopy.splice(eventoToDelete, 1);
@@ -34,6 +65,7 @@ const ListaEventos = () => {
     setModalOpen(false);
   };
 
+  // Renderizado
   if (eventos.length === 0) {
     return (
       <div className="lista-eventos-container">
@@ -51,15 +83,16 @@ const ListaEventos = () => {
         Crear nuevo evento
       </Link>
       <ul>
-        {eventos.map((evento, index) => {
+        {currentEvents.map((evento, index) => {
+          // Calcula el índice correcto en la lista de todos los eventos
+          const realIndex = currentPage * eventsPerPage - eventsPerPage + index;
+
           return (
-            <li key={index}>
-              {/* Para cuando escalemos a base de datos simulada o real */}
-              {/* {evento.id} - {evento.nombre} - {evento.fecha} */}
-              {index + 1} - {evento.nombre} - {evento.fecha}
+            <li key={realIndex}>
+              {realIndex + 1} - {evento.nombre} - {evento.fecha}
               <div className="botones">
                 <button onClick={() => handleDelete(index)}>Eliminar</button>
-                <Link to={`/privado/eventos-privado/editar/${index}`}>
+                <Link to={`/privado/eventos-privado/editar/${realIndex}`}>
                   Editar
                 </Link>
               </div>
@@ -67,6 +100,14 @@ const ListaEventos = () => {
           );
         })}
       </ul>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        setCurrentPage={setCurrentPage}
+        eventsPerPage={eventsPerPage}
+        setEventsPerPage={setEventsPerPage}
+        maxPageNums={maxPageNums}
+      />
       <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
         <h2>Confirmar eliminación</h2>
         <p>¿Estás seguro de que quieres eliminar este evento?</p>
@@ -77,8 +118,21 @@ const ListaEventos = () => {
           Cancelar
         </button>
       </Modal>
+      <div>
+        <label htmlFor="eventsPerPage">Eventos por página: </label>
+        <select
+          name="eventsPerPage"
+          id="eventsPerPage"
+          value={eventsPerPage}
+          onChange={(e) => setEventsPerPage(Number(e.target.value))}
+        >
+          <option value="3">3</option>
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+        </select>
+      </div>
     </div>
   );
 };
-
 export default ListaEventos;
