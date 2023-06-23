@@ -22,6 +22,8 @@ import FormularioArtista from "./privada/paginas/artistas-privado/formulario/Art
 import ListaArtistas from "./privada/paginas/artistas-privado/ListaArtistas";
 import CancionesList from "./publica/paginas/dinamicas/canciones/canciones";
 import CancionItem from "./publica/paginas/dinamicas/canciones/cancion/cancion";
+import FormularioCancion from "./privada/paginas/canciones-privado/formulario/CancionForm";
+import ListaCanciones from "./privada/paginas/canciones-privado/ListaCanciones";
 
 function MainContent() {
   const location = useLocation();
@@ -59,6 +61,9 @@ function MainContent() {
         { path: "artistas-privado", element: <ListaArtistas /> },
         { path: "artistas-privado/nuevo", element: <FormularioArtista /> },
         { path: "artistas-privado/editar/:id", element: <FormularioArtista /> },
+        { path: "canciones-privado", element: <ListaCanciones /> },
+        { path: "canciones-privado/nuevo", element: <FormularioCancion /> },
+        { path: "canciones-privado/editar/:id", element: <FormularioCancion /> },
       ],
     },
   ]);

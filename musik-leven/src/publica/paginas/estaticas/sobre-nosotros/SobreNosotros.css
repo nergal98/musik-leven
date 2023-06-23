@@ -1,23 +1,20 @@
 body {
-    background-color: #000;
-    color: #fff;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .event-list {
-    max-width: 600px;
-    text-align: center;
-  }
-  
-  .event-list h1 {
-    margin-top: 0;
-  }
-  
-  .event-list p {
-    text-decoration: none;
-    color: #fff;
-    transition: color 0.3s;
-    text-align: justify;
-  }
+  background-color: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.event-list {
+  max-width: 600px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.event-list p {
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s;
+  text-align: justify;
+}
