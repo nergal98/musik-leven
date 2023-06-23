@@ -1,5 +1,5 @@
-import React from 'react';
-import { useRoutes } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useRoutes, useNavigate } from 'react-router-dom';
 import FormularioEvento from "./paginas/eventos-privado/formulario/EventForm";
 import ListaEventos from "./paginas/eventos-privado/ListaEventos";
 import Home from '../publica/paginas/estaticas/home/Home';
@@ -7,6 +7,15 @@ import ListaArtistas from './paginas/artistas-privado/ListaArtistas';
 import FormularioArtista from './paginas/artistas-privado/formulario/ArtistaForm';
 
 export default function PrivateRoutes() {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = sessionStorage.getItem('token');
+        if (!token) {
+            navigate("/login"); // redirige al usuario a la página de inicio de sesión si no hay un token
+        }
+    }, [navigate]);
+
     let routes = useRoutes([
         { path: "", element: <Home /> },
         { path: "eventos-privado", element: <ListaEventos /> },

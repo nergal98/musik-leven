@@ -61,7 +61,7 @@ const Nav = ({ navRef }) => {
           <Link to="/contacto">Contacto</Link>
         </li>
         <li>
-          <Link to="/privado">Log In</Link>
+          <Link to="/login">Log In</Link>
         </li>
         <li>
           <Link to="/signup">Sign Up</Link>

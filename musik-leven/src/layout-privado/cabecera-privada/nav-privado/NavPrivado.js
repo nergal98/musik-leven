@@ -1,13 +1,20 @@
-// Nav.js
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Importa useNavigate
 import "./NavPrivado.css";
 
 const Nav = ({ navRef }) => {
   const [isActive, setIsActive] = useState(false);
 
+  const navigate = useNavigate(); // Crea una instancia de useNavigate
+
   const toggleNav = () => {
     setIsActive(!isActive);
+  };
+
+  // Función para cerrar sesión
+  const logout = () => {
+    sessionStorage.removeItem("token"); // Borra el token
+    navigate("/"); // Redirige al home público
   };
 
   useEffect(() => {
@@ -42,6 +49,14 @@ const Nav = ({ navRef }) => {
         </li>
         <li>
           <Link to="/privado/eventos-privado">Eventos</Link>
+        </li>
+        <li>
+          <Link to="/">Home público</Link>
+        </li>
+        <li>
+          <Link to="/" onClick={logout}>
+            Log out
+          </Link>
         </li>
       </ul>
     </nav>

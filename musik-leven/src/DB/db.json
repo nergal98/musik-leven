@@ -1,0 +1,25 @@
+{
+  "usuarios": [
+    {
+      "name": "admin",
+      "email": "admin@admin.com",
+      "gender": "male",
+      "password": "123456",
+      "id": 1
+    },
+    {
+      "name": "Prueba",
+      "email": "prueba@gmail.com",
+      "gender": "female",
+      "password": "123456",
+      "id": 2
+    },
+    {
+      "name": "José Antonio",
+      "email": "selicoslive@gmail.com",
+      "gender": "male",
+      "password": "123456",
+      "id": 3
+    }
+  ]
+}

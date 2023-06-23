@@ -16,13 +16,11 @@ import Artistas from "./publica/paginas/dinamicas/artistas/artistas";
 import Artista from "./publica/paginas/dinamicas/artistas/artista/artista";
 import "./App.css";
 import CabeceraPrivada from "./layout-privado/cabecera-privada/CabeceraPrivada";
-import FormularioEvento from "./privada/paginas/eventos-privado/formulario/EventForm";
-import ListaEventos from "./privada/paginas/eventos-privado/ListaEventos";
-import FormularioArtista from "./privada/paginas/artistas-privado/formulario/ArtistaForm";
-import ListaArtistas from "./privada/paginas/artistas-privado/ListaArtistas";
 import CancionesList from "./publica/paginas/dinamicas/canciones/canciones";
 import CancionItem from "./publica/paginas/dinamicas/canciones/cancion/cancion";
 import PrivateRoutes from "./privada/PrivateRoutes";
+import Login from "./publica/paginas/estaticas/login/Login";
+import SignUp from "./publica/paginas/estaticas/sign-up/SignUp";
 
 function MainContent() {
   const location = useLocation();
@@ -48,6 +46,16 @@ function MainContent() {
         { path: "contacto", element: <Contacto /> },
         { path: "sobre-nosotros", element: <SobreNosotros /> },
         { path: "*", element: <NotFound /> },
+        {
+          path: '/login',
+          element: <Login />
+        },
+      
+        // Ruta de registro
+        {
+          path: '/signup',
+          element: <SignUp />
+        },
       ],
     },
     {
