@@ -38,7 +38,7 @@ const Nav = ({ navRef }) => {
           <Link to="/privado/canciones-privado">Canciones</Link>
         </li>
         <li>
-          <Link to="/privado/contactos-privado">Artistas</Link>
+          <Link to="/privado/artistas-privado">Artistas</Link>
         </li>
         <li>
           <Link to="/privado/eventos-privado">Eventos</Link>
