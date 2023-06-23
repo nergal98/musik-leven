@@ -16,8 +16,8 @@ import Artistas from "./publica/paginas/dinamicas/artistas/artistas";
 import Artista from "./publica/paginas/dinamicas/artistas/artista/artista";
 import "./App.css";
 import CabeceraPrivada from "./layout-privado/cabecera-privada/CabeceraPrivada";
-import FormularioEvento from "./privada/eventos-privado/formulario/EventForm";
-import ListaEventos from "./privada/eventos-privado/ListaEventos";
+import FormularioEvento from "./privada/paginas/eventos-privado/formulario/EventForm";
+import ListaEventos from "./privada/paginas/eventos-privado/ListaEventos";
 import CancionesList from "./publica/paginas/dinamicas/canciones/canciones";
 import CancionItem from "./publica/paginas/dinamicas/canciones/cancion/cancion";
 

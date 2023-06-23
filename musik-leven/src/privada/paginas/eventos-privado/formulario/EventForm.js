@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Validator from "../../utilidades/validator/Validator";
+import Validator from "../../../utilidades/validator/Validator";
 import "./EventForm.css";
 
 function FormularioEvento() {

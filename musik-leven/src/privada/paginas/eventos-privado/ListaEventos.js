@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./ListaEventos.css";
 
-import Modal from "../utilidades/modal/Modal";
-import Pagination from "../utilidades/paginator/Pagination";
+import Modal from "../../utilidades/modal/Modal";
+import Pagination from "../../utilidades/paginator/Pagination";
 
 // Tu componente principal
 const ListaEventos = () => {
