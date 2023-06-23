@@ -53,18 +53,7 @@ function MainContent() {
     },
     {
       path: "privado/*",
-      children: [
-        { path: "", element: <Home /> },
-        { path: "eventos-privado", element: <ListaEventos /> },
-        { path: "eventos-privado/nuevo", element: <FormularioEvento /> },
-        { path: "eventos-privado/editar/:id", element: <FormularioEvento /> },
-        { path: "artistas-privado", element: <ListaArtistas /> },
-        { path: "artistas-privado/nuevo", element: <FormularioArtista /> },
-        { path: "artistas-privado/editar/:id", element: <FormularioArtista /> },
-        { path: "canciones-privado", element: <ListaCanciones /> },
-        { path: "canciones-privado/nuevo", element: <FormularioCancion /> },
-        { path: "canciones-privado/editar/:id", element: <FormularioCancion /> },
-      ],
+      element: <PrivateRoutes />  // <-- Modifica esto
     },
   ]);
 
