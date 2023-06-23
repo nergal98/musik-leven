@@ -121,7 +121,7 @@ const ListaArtistas = () => {
                 </button>
             </Modal>
             <div>
-                <label htmlFor="artistasPerPage">Eventos por página: </label>
+                <label htmlFor="artistasPerPage">Artistas por página: </label>
                 <select
                     name="artistasPerPage"
                     id="artistasPerPage"
