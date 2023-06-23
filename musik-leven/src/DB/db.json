@@ -21,5 +21,31 @@
       "password": "123456",
       "id": 3
     }
+  ],
+  "eventos": [
+    {
+      "nombre": "Tomorrowland",
+      "descripcion": "Tomorrowland es un festival de música electrónica de baile celebrado anualmente en la localidad de Boom (Flandes, Bélgica). El festival es organizado por las empresas propias del festival (We Are One World y Tomorrowland Foundation) en conjunción con la promotora estadounidense LiveStyle, y se calcula que anualmente acuden más de 400.000 personas de casi 200 nacionalidades distintas​ Es oficialmente el festival más grande del planeta.",
+      "imagen": "/assets/img/daydream.jpg",
+      "lugar": "Area recreativa provincial De Schorre, Boom, Antwerp, Bélgica",
+      "genero": "Electronico",
+      "ciudad": "Flandes, Bélgica",
+      "precio": "149.98",
+      "fecha": "2023-07-21",
+      "organizador": "\tID&T (2005-2013) LiveStyle (2013-act.) We Are One World (2013-act.) Tomorrowland Foundation (2013-act.)",
+      "id": 1
+    },
+    {
+      "nombre": "DreamBeach",
+      "descripcion": "Dreambeach, uno de los eventos más importantes y multitudinarios del panorama festivalero español, regresará en 2023 a la playa de Villaricos-Palomares (Almería), con cinco jornadas de música electrónica que se desarrollarán entre los días 9 y 13 de agosto del próximo año.",
+      "imagen": "/assets/img/dreambeach.jpg",
+      "lugar": "Playa de Villaricos (Cuevas del Almanzora)",
+      "genero": "Electronico",
+      "ciudad": "Almería",
+      "precio": "195.98",
+      "fecha": "2023-08-18",
+      "organizador": "Hermanos Toro",
+      "id": 2
+    }
   ]
 }

@@ -47,20 +47,19 @@ function MainContent() {
         { path: "sobre-nosotros", element: <SobreNosotros /> },
         { path: "*", element: <NotFound /> },
         {
-          path: '/login',
-          element: <Login />
+          path: "/login",
+          element: <Login />,
         },
-      
-        // Ruta de registro
+
         {
-          path: '/signup',
-          element: <SignUp />
+          path: "/signup",
+          element: <SignUp />,
         },
       ],
     },
     {
       path: "privado/*",
-      element: <PrivateRoutes />  // <-- Modifica esto
+      element: <PrivateRoutes />,
     },
   ]);
 

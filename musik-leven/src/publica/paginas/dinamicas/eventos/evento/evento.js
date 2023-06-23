@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import eventos from '../../../../../data/eventos';
+
 import './evento.css';
+import EventService from '../../../../../servicios/EventService';
 
 const EventItem = () => {
   const { id } = useParams();
-  
-  // Busca el evento correspondiente a este ID en tus datos
-  const eventItem = eventos.find(evento => evento.id === parseInt(id));
+  const [eventItem, setEventItem] = useState(null);
+
+  useEffect(() => {
+    const fetchEvent = async () => {
+      try {
+        const data = await EventService.getEventById(id);
+        setEventItem(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchEvent();
+  }, [id]);
 
   if (!eventItem) {
     return <p>Evento no encontrado</p>;
@@ -25,7 +37,7 @@ const EventItem = () => {
         <p>Fecha: {new Date(eventItem.fecha).toLocaleDateString()}</p>
         <p>Organizador: {eventItem.organizador}</p>
       </div>
-      <img className="event-img" src={eventItem.foto} alt={eventItem.nombre}/>
+      <img className="event-img" src={eventItem.imagen} alt={eventItem.nombre}/>
     </div>
   );
 }

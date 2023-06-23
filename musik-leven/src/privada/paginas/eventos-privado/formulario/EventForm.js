@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Validator from "../../../utilidades/validator/Validator";
 import "./EventForm.css";
+import EventService from "../../../../servicios/EventService";
 
 function FormularioEvento() {
   const navigate = useNavigate();
@@ -31,17 +32,22 @@ function FormularioEvento() {
 
   React.useEffect(() => {
     if (isEdit) {
-      const eventos = JSON.parse(localStorage.getItem("eventos")) || [];
-      const evento = eventos[id];
-
-      if (evento) {
-        setState(evento);
-      } else {
-        // Manejar el caso en que no se encuentre el evento
-      }
+      const loadEvento = async () => {
+        try {
+          const evento = await EventService.getEventById(id);
+          if (evento) {
+            setState(evento);
+          } else {
+            // Manejar el caso en que no se encuentre el evento
+          }
+        } catch (e) {
+          console.error("Error loading evento:", e);
+        }
+      };
+      loadEvento();
     }
   }, [isEdit, id]);
-
+  
   const validateForm = () => {
     let errors = {};
     let formIsValid = true;
@@ -112,18 +118,15 @@ function FormularioEvento() {
 
     return formIsValid;
   };
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (validateForm()) {
-      const eventos = JSON.parse(localStorage.getItem("eventos")) || [];
       if (isEdit) {
-        eventos[id] = state;
+        await EventService.updateEvent(state);
       } else {
-        eventos.push(state);
+        await EventService.createEvent(state);
       }
-      localStorage.setItem("eventos", JSON.stringify(eventos));
-      navigate("/privado/eventos-privado"); // Aquí está el cambio
+      navigate("/privado/eventos-privado"); 
     }
   };
   return (

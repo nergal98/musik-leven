@@ -1,46 +1,66 @@
 .sign-up-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: 350px;
-    margin: 0 auto;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.8);
-    border-radius: 10px;
-    color: #F9A602;
-    font-family: 'Roboto', sans-serif;
-    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.2);
-    margin-top: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  max-width: 600px;
+  margin: 5% auto;
+  padding: 40px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 20px;
+  color: #f9a602;
+  box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.3);
 }
 
-.sign-up-container input, .sign-up-container select {
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    color: #38a4b3;
+.sign-up-container input,
+.sign-up-container select {
+  width: 100%;
+  padding: 20px;
+  border: none;
+  border-radius: 50px;
+  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #38a4b3;
+  font-size: 18px;
 }
 
 .sign-up-container button {
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 5px;
-    background-color: #F9A602;
-    color: #000;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-weight: bold;
-    margin-top: 10px;
+  width: 100%;
+  padding: 20px;
+  border: none;
+  border-radius: 50px;
+  background-color: #f9a602;
+  color: #000;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+  transition: all 0.3s ease;
 }
 
 .sign-up-container button:hover {
-    background-color: #F9C602;
+  background-color: #f9c602;
+  transform: scale(1.02);
 }
 
 .sign-up-container button:active {
-    background-color: #F9E102;
+  background-color: #f9e102;
+  transform: scale(0.98);
+}
+
+@media (max-width: 768px) {
+  .sign-up-container {
+    width: 90%;
+    padding: 20px;
+    margin-top: 100px;
+  }
+
+  .sign-up-container input,
+  .sign-up-container select,
+  .sign-up-container button {
+    padding: 15px;
+    font-size: 16px;
+  }
 }

@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { setEventsPerPage } from "../../../redux/actions"; // Asegúrate de que la ruta sea correcta
 import "./ListaEventos.css";
 
 import Modal from "../../utilidades/modal/Modal";
 import Pagination from "../../utilidades/paginator/Pagination";
+import EventService from "../../../servicios/EventService";
 
 // Tu componente principal
 const ListaEventos = () => {
@@ -12,7 +15,10 @@ const ListaEventos = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [eventoToDelete, setEventoToDelete] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [eventsPerPage, setEventsPerPage] = useState(5);
+
+  // Usa el estado de Redux en lugar de useState
+  const dispatch = useDispatch();
+  const eventsPerPage = useSelector((state) => state.eventsPerPage);
 
   const maxPageNums = 5;
   const totalPages = Math.ceil(eventos.length / eventsPerPage);
@@ -24,17 +30,18 @@ const ListaEventos = () => {
 
   // Carga de eventos
   useEffect(() => {
-    const loadEventos = () => {
+    const loadEventos = async () => {
       try {
-        const eventos = JSON.parse(localStorage.getItem("eventos")) || [];
+        const eventos = await EventService.getAllEvents();
         setEventos(eventos);
       } catch (e) {
-        console.error("Error parsing eventos from localStorage:", e);
+        console.error("Error loading eventos:", e);
         setEventos([]);
       }
     };
     loadEventos();
   }, []);
+
   useEffect(() => {
     setCurrentPage((oldPage) => {
       const newTotalPages = Math.ceil(eventos.length / eventsPerPage);
@@ -55,12 +62,16 @@ const ListaEventos = () => {
     // Calcula el índice correcto en la lista de todos los eventos
     const realIndex = currentPage * eventsPerPage - eventsPerPage + index;
     setModalOpen(true);
-    setEventoToDelete(realIndex);
+    setEventoToDelete(eventos[realIndex].id); // Aquí se hace el cambio
   };
-  const confirmDelete = () => {
-    let eventosCopy = [...eventos];
-    eventosCopy.splice(eventoToDelete, 1);
-    localStorage.setItem("eventos", JSON.stringify(eventosCopy));
+
+  const confirmDelete = async () => {
+    await EventService.deleteEvent(eventoToDelete);
+    const eventosCopy = [...eventos];
+    const realIndex = eventos.findIndex(
+      (evento) => evento.id === eventoToDelete
+    );
+    eventosCopy.splice(realIndex, 1);
     setEventos(eventosCopy);
     setModalOpen(false);
   };
@@ -84,15 +95,13 @@ const ListaEventos = () => {
       </Link>
       <ul>
         {currentEvents.map((evento, index) => {
-          // Calcula el índice correcto en la lista de todos los eventos
           const realIndex = currentPage * eventsPerPage - eventsPerPage + index;
-
           return (
             <li key={realIndex}>
               {realIndex + 1} - {evento.nombre} - {evento.fecha}
               <div className="botones">
                 <button onClick={() => handleDelete(index)}>Eliminar</button>
-                <Link to={`/privado/eventos-privado/editar/${realIndex}`}>
+                <Link to={`/privado/eventos-privado/editar/${evento.id}`}>
                   Editar
                 </Link>
               </div>
@@ -105,7 +114,7 @@ const ListaEventos = () => {
         totalPages={totalPages}
         setCurrentPage={setCurrentPage}
         eventsPerPage={eventsPerPage}
-        setEventsPerPage={setEventsPerPage}
+        setEventsPerPage={(value) => dispatch(setEventsPerPage(value))}
         maxPageNums={maxPageNums}
       />
       <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
@@ -124,7 +133,7 @@ const ListaEventos = () => {
           name="eventsPerPage"
           id="eventsPerPage"
           value={eventsPerPage}
-          onChange={(e) => setEventsPerPage(Number(e.target.value))}
+          onChange={(e) => dispatch(setEventsPerPage(Number(e.target.value)))}
         >
           <option value="3">3</option>
           <option value="5">5</option>
