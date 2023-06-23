@@ -22,6 +22,7 @@ import FormularioArtista from "./privada/paginas/artistas-privado/formulario/Art
 import ListaArtistas from "./privada/paginas/artistas-privado/ListaArtistas";
 import CancionesList from "./publica/paginas/dinamicas/canciones/canciones";
 import CancionItem from "./publica/paginas/dinamicas/canciones/cancion/cancion";
+import PrivateRoutes from "./privada/PrivateRoutes";
 
 function MainContent() {
   const location = useLocation();
@@ -51,15 +52,7 @@ function MainContent() {
     },
     {
       path: "privado/*",
-      children: [
-        { path: "", element: <Home /> },
-        { path: "eventos-privado", element: <ListaEventos /> },
-        { path: "eventos-privado/nuevo", element: <FormularioEvento /> },
-        { path: "eventos-privado/editar/:id", element: <FormularioEvento /> },
-        { path: "artistas-privado", element: <ListaArtistas /> },
-        { path: "artistas-privado/nuevo", element: <FormularioArtista /> },
-        { path: "artistas-privado/editar/:id", element: <FormularioArtista /> },
-      ],
+      element: <PrivateRoutes />  // <-- Modifica esto
     },
   ]);
 
