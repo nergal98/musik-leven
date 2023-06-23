@@ -16,14 +16,9 @@ import Artistas from "./publica/paginas/dinamicas/artistas/artistas";
 import Artista from "./publica/paginas/dinamicas/artistas/artista/artista";
 import "./App.css";
 import CabeceraPrivada from "./layout-privado/cabecera-privada/CabeceraPrivada";
-import FormularioEvento from "./privada/paginas/eventos-privado/formulario/EventForm";
-import ListaEventos from "./privada/paginas/eventos-privado/ListaEventos";
-import FormularioArtista from "./privada/paginas/artistas-privado/formulario/ArtistaForm";
-import ListaArtistas from "./privada/paginas/artistas-privado/ListaArtistas";
 import CancionesList from "./publica/paginas/dinamicas/canciones/canciones";
 import CancionItem from "./publica/paginas/dinamicas/canciones/cancion/cancion";
-import FormularioCancion from "./privada/paginas/canciones-privado/formulario/CancionForm";
-import ListaCanciones from "./privada/paginas/canciones-privado/ListaCanciones";
+import PrivateRoutes from './privada/PrivateRoutes';
 
 function MainContent() {
   const location = useLocation();
