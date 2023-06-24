@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import AuthService from "../../../../servicios/AuthService";
-import { useNavigate } from "react-router-dom"; // Importamos useNavigate
+import { useNavigate } from "react-router-dom";
 import "./SignUp.css";
 
 const SignUp = () => {
@@ -9,18 +9,42 @@ const SignUp = () => {
   const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate = useNavigate(); // Usamos useNavigate
+  const navigate = useNavigate();
+
+  const validateForm = () => {
+    let isValid = true;
+    let errorMessage = "";
+
+    if (!name || !email || !gender || !password) {
+      isValid = false;
+      errorMessage = "Todos los campos son requeridos.";
+    } else if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email)) {
+      isValid = false;
+      errorMessage = "Por favor introduce una dirección de correo electrónico válida.";
+    }
+
+    if (!isValid) {
+      alert(errorMessage);
+    }
+
+    return isValid;
+  }
 
   const handleSignUp = async () => {
+    if (!validateForm()) {
+      return;
+    }
+
     const user = { name, email, gender, password };
     try {
       await AuthService.signup(user);
       console.log("Registro exitoso!");
-      navigate("/login"); // Navegamos al login después de un registro exitoso
+      navigate("/login");
     } catch (error) {
-      console.log("Se ha producido un error", error);
+      alert("Se ha producido un error: " + error.message);
     }
   };
+
   return (
     <div className="sign-up-container">
       <input

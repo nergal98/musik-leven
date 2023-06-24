@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setEventsPerPage } from "../../../redux/actions"; // Asegúrate de que la ruta sea correcta
+import { setEventsPerPage, setCurrentEventsPage } from "../../../redux/actions"; // Asegúrate de que la ruta sea correcta
 import "./ListaEventos.css";
 
 import Modal from "../../utilidades/modal/Modal";
@@ -14,7 +14,7 @@ const ListaEventos = () => {
   const [eventos, setEventos] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [eventoToDelete, setEventoToDelete] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1);
+  const currentPage = useSelector((state) => state.currentEventsPage);
 
   // Usa el estado de Redux en lugar de useState
   const dispatch = useDispatch();
@@ -27,6 +27,11 @@ const ListaEventos = () => {
   const indexOfLastEvent = currentPage * eventsPerPage;
   const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
   const currentEvents = eventos.slice(indexOfFirstEvent, indexOfLastEvent);
+
+  // Actualizar la página actual en Redux
+  const updateCurrentPage = (pageNum) => {
+    dispatch(setCurrentEventsPage(pageNum));
+  };
 
   // Carga de eventos
   useEffect(() => {
@@ -43,7 +48,7 @@ const ListaEventos = () => {
   }, []);
 
   useEffect(() => {
-    setCurrentPage((oldPage) => {
+    setCurrentEventsPage((oldPage) => {
       const newTotalPages = Math.ceil(eventos.length / eventsPerPage);
       return Math.min(oldPage, newTotalPages);
     });
@@ -52,9 +57,9 @@ const ListaEventos = () => {
   useEffect(() => {
     const newTotalPages = Math.ceil(eventos.length / eventsPerPage);
     if (currentPage > newTotalPages) {
-      setCurrentPage(newTotalPages);
+      setCurrentEventsPage(newTotalPages);
     } else if (currentPage < 1 && newTotalPages > 0) {
-      setCurrentPage(1);
+      setCurrentEventsPage(1);
     }
   }, [eventos, eventsPerPage, currentPage]);
 
@@ -74,6 +79,12 @@ const ListaEventos = () => {
     eventosCopy.splice(realIndex, 1);
     setEventos(eventosCopy);
     setModalOpen(false);
+
+    // Añade esto para revisar si la página actual se quedó vacía
+    const newTotalPages = Math.ceil(eventosCopy.length / eventsPerPage);
+    if (currentPage > newTotalPages) {
+      dispatch(setCurrentEventsPage(newTotalPages));
+    }
   };
 
   // Renderizado
@@ -112,7 +123,7 @@ const ListaEventos = () => {
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
-        setCurrentPage={setCurrentPage}
+        setCurrentPage={updateCurrentPage}
         eventsPerPage={eventsPerPage}
         setEventsPerPage={(value) => dispatch(setEventsPerPage(value))}
         maxPageNums={maxPageNums}
@@ -133,7 +144,16 @@ const ListaEventos = () => {
           name="eventsPerPage"
           id="eventsPerPage"
           value={eventsPerPage}
-          onChange={(e) => dispatch(setEventsPerPage(Number(e.target.value)))}
+          onChange={(e) => {
+            const newEventsPerPage = Number(e.target.value);
+            dispatch(setEventsPerPage(newEventsPerPage));
+
+            // Comprueba si la página actual es válida
+            const newTotalPages = Math.ceil(eventos.length / newEventsPerPage);
+            if (currentPage > newTotalPages) {
+              dispatch(setCurrentEventsPage(newTotalPages));
+            }
+          }}
         >
           <option value="3">3</option>
           <option value="5">5</option>

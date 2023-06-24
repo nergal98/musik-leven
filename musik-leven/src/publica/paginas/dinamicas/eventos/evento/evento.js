@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-import './evento.css';
-import EventService from '../../../../../servicios/EventService';
+import "./evento.css";
+import EventService from "../../../../../servicios/EventService";
 
 const EventItem = () => {
   const { id } = useParams();
@@ -37,9 +37,13 @@ const EventItem = () => {
         <p>Fecha: {new Date(eventItem.fecha).toLocaleDateString()}</p>
         <p>Organizador: {eventItem.organizador}</p>
       </div>
-      <img className="event-img" src={eventItem.imagen} alt={eventItem.nombre}/>
+      <img
+        className="event-img"
+        src={eventItem.imagen}
+        alt={eventItem.nombre}
+      />
     </div>
   );
-}
+};
 
 export default EventItem;

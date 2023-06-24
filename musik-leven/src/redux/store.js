@@ -1,4 +1,4 @@
 import { createStore } from 'redux';
-import { eventsReducer } from './reducers';
+import { combinedReducer } from './reducers';
 
-export const store = createStore(eventsReducer);
+export const store = createStore(combinedReducer);

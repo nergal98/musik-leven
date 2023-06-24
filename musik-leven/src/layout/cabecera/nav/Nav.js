@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Nav.css";
+import AuthService from "../../../servicios/AuthService";
 
 const Nav = ({ navRef }) => {
   const [isActive, setIsActive] = useState(false);
@@ -14,7 +15,7 @@ const Nav = ({ navRef }) => {
     const handleClickOutside = (event) => {
       if (navRef.current && !navRef.current.contains(event.target)) {
         setIsActive(false);
-        setDropdownActive(false); // Añadir esta línea
+        setDropdownActive(false); 
       }
     };
 
@@ -61,7 +62,11 @@ const Nav = ({ navRef }) => {
           <Link to="/contacto">Contacto</Link>
         </li>
         <li>
-          <Link to="/login">Log In</Link>
+          {AuthService.isAuthenticated() ? (
+            <Link to="/privado">Acceder</Link>
+          ) : (
+            <Link to="/login">Log In</Link>
+          )}
         </li>
         <li>
           <Link to="/signup">Sign Up</Link>

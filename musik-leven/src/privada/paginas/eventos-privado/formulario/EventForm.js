@@ -47,7 +47,7 @@ function FormularioEvento() {
       loadEvento();
     }
   }, [isEdit, id]);
-  
+
   const validateForm = () => {
     let errors = {};
     let formIsValid = true;
@@ -97,7 +97,7 @@ function FormularioEvento() {
       .isRequired("Por favor, introduce la descripción del evento.")
       .isLength(
         1,
-        500,
+        1000,
         "La descripción del evento no puede exceder de 500 caracteres."
       )
       .getErrors();
@@ -126,7 +126,7 @@ function FormularioEvento() {
       } else {
         await EventService.createEvent(state);
       }
-      navigate("/privado/eventos-privado"); 
+      navigate("/privado/eventos-privado");
     }
   };
   return (

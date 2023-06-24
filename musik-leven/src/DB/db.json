@@ -20,6 +20,13 @@
       "gender": "male",
       "password": "123456",
       "id": 3
+    },
+    {
+      "name": "prueba100",
+      "email": "prueba100@gmail.com",
+      "gender": "male",
+      "password": "123456",
+      "id": 4
     }
   ],
   "eventos": [
@@ -30,7 +37,7 @@
       "lugar": "Area recreativa provincial De Schorre, Boom, Antwerp, Bélgica",
       "genero": "Electronico",
       "ciudad": "Flandes, Bélgica",
-      "precio": "149.98",
+      "precio": "159.95",
       "fecha": "2023-07-21",
       "organizador": "\tID&T (2005-2013) LiveStyle (2013-act.) We Are One World (2013-act.) Tomorrowland Foundation (2013-act.)",
       "id": 1
@@ -46,6 +53,18 @@
       "fecha": "2023-08-18",
       "organizador": "Hermanos Toro",
       "id": 2
+    },
+    {
+      "nombre": "Ultra Music Festival",
+      "descripcion": "Ultra Music Festival (UMF) es un festival anual de música electrónica, fundado en 1999 por Russell Faibisch y Alex Omes. El festival tiene lugar en marzo en la ciudad de Miami, Florida. El primer evento del festival coincidió con el Winter Music Conference en el año 1999, que también se llevó a cabo en Miami. El festival tuvo lugar entre 1999 y 2000 en South Beach (Miami Beach), entre 2001 y 2005 en Bayfront Park (Downtown Miami), entre 2006 y 2011 en el Bicentennial Park (Downtown Miami), entre 2012 y 2018 se realizó de nuevo en Bayfront Park y en 2019 tuvo lugar en Virgina Key Beach Park, lo que generó descontento entre los asistentes por la lejanía de la zona respecto a la ciudad. Debido a la pandemia provocada por el virus COVID-19, el festival se suspendió los años 2020 y 2021, siendo reanudado en 2022 en Bayfront Park.",
+      "imagen": "/assets/img/tomorrowland.jpg",
+      "lugar": "South Beach (Miami Beach",
+      "genero": "Electronico",
+      "ciudad": "Miami",
+      "precio": "250",
+      "fecha": "2023-07-09",
+      "organizador": "Ultra Enterprises, Inc. Ultra Worldwide",
+      "id": 3
     }
   ]
 }
