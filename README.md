@@ -8,7 +8,7 @@ El directorio `assets` alberga todos los recursos estáticos de la aplicación, 
 
 ## /DB
 
-Este directorio contiene el archivo `db.js`, que representa una base de datos simulada y contiene datos estáticos.
+Este directorio contiene el archivo `db.js`, que representa una base de datos simulada.
 
 ## /interceptor
 
@@ -92,17 +92,17 @@ El directorio `not-found` contiene un único componente llamado `NotFound.js` qu
 
 A continuación se muestra el diagrama de la aplicación:
 
-![Diagrama de la aplicación](musik-leven/src/assets/img/MusikLeven.jpg)
+![Diagrama de la aplicación](src/assets/img/MusikLeven.jpg)
 
 ## Capturas de pantalla de la aplicación
 
 A continuación, se muestran algunas capturas de pantalla de la aplicación:
 
-![Captura 1](musik-leven/src/assets/img/escritorio.png)
+![Captura 1](src/assets/img/escritorio.png)
 
 Escritorio
 
-![Captura 2](musik-leven/src/assets/img/mobile.png)
+![Captura 2](src/assets/img/mobile.png)
 
 Mobile
 
