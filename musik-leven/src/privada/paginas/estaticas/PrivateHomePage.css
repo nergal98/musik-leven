@@ -1,59 +1,63 @@
-.container {
-    width: calc(100% - 2rem);
-    max-width: 1200px;
-    margin: auto;
-  }
-  
-  .cardFilm img {
-    width: 100%;
-    max-height: 200px; /* Ajusta este valor según tus necesidades */
-    object-fit: cover; /* Asegura que la imagen cubra todo el espacio sin estirarse */
-  }
+body {
+  padding-top: 60px; /* Ajusta este valor según la altura de tu cabecera */
+}
 
-  .cardFilm button {
-    background-color: #2d0e70; /* El color de fondo del botón */
-    color: #ffffff; /* El color del texto del botón */
-    border: none; /* Elimina la frontera del botón */
-    padding: 10px 20px; /* El espacio interno del botón */
-    margin-top: 10px; /* Añade espacio arriba del botón */
-    cursor: pointer; /* Cambia el cursor al pasar el ratón por encima */
-    font-weight: bold; /* El texto del botón será negrita */
-    border-radius: 5px; /* Redondea las esquinas del botón */
+.container {
+  width: calc(100% - 2rem);
+  max-width: 1200px;
+  margin: auto;
+}
+
+.cardFilm img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+}
+
+.cardFilm button {
+  background-color: #2d0e70;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
-  
-  @media screen and (min-width: 1024px) {
-    .container {
-      width: 100%;
-      margin-left: auto;
-      margin-right: auto;
-    }
-  }
-  
+}
+
+.main .main__section1 {
+  background-color: #2d0e70;
+  padding: 25px;
+}
+
+.main .main__section1 .container__flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.main .main__section1 .cardFilm {
+  width: 50%; /* Aumenta el ancho de las tarjetas para que sean más anchas */
+}
+
+@media screen and (min-width: 768px) {
   .main .main__section1 {
-    background-color: #2d0e70;
-    padding: 25px;
+    padding: 50px;
   }
-  
-  .main .main__section1 .container__flex {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    gap: 15px;
-    flex-wrap: wrap;
+  .main .main__section1 h2 {
+    font-size: 1.8rem;
   }
-  
   .main .main__section1 .cardFilm {
-    width: 400px;
+    width: 400px; /* Aumenta el ancho de las tarjetas para que sean más anchas en pantallas más grandes */
   }
-  
-  @media screen and (min-width: 768px) {
-    .main .main__section1 {
-      padding: 50px;
-    }
-    .main .main__section1 h2 {
-      font-size: 1.8rem;
-    }
-    .main .main__section1 .cardFilm {
-      width: 250px;
-    }
-  }
+}

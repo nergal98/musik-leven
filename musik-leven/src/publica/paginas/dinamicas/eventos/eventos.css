@@ -1,5 +1,5 @@
 body {
-  background-color: #000;
+  background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
   color: #fff;
   font-family: Arial, sans-serif;
   margin: 0;
@@ -20,22 +20,55 @@ body {
   text-transform: uppercase;
 }
 
-.event-list ul {
-  list-style: none;
-  padding: 0;
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.event-list li {
-  margin: 10px 0;
-  font-size: 1.2em;
+.event-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #1db954;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
-.event-list a {
+.event-card:hover {
+  transform: scale(1.05);
+}
+
+.event-card img {
+  width: 100%;
+  height: auto;
+  filter: grayscale(100%);
+  transition: filter 0.3s;
+}
+
+.event-card img:hover {
+  filter: grayscale(0);
+}
+
+.event-card a {
   text-decoration: none;
   color: #fff;
+  padding: 10px;
   transition: color 0.3s;
 }
 
-.event-list a:hover {
+.event-card a:hover {
   color: #1db954; /* Verde Spotify */
+}
+
+@media (max-width: 480px) {
+  .event-grid {
+    grid-template-columns: 1fr;
+  }
 }

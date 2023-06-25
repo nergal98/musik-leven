@@ -20,13 +20,6 @@
       "gender": "male",
       "password": "123456",
       "id": 3
-    },
-    {
-      "name": "prueba100",
-      "email": "prueba100@gmail.com",
-      "gender": "male",
-      "password": "123456",
-      "id": 4
     }
   ],
   "eventos": [
@@ -65,6 +58,18 @@
       "fecha": "2023-07-09",
       "organizador": "Ultra Enterprises, Inc. Ultra Worldwide",
       "id": 3
+    },
+    {
+      "nombre": "Monegros Desert Festival",
+      "descripcion": "Monegros Desert Festival es un festival de música electrónica que se celebra en España, en el desierto de los Monegros (Huesca), entre las poblaciones de Candasnos y Fraga. Recientemente se ha visto implicado en casos de explotación laboral, exigiendo a sus camareros jornadas de 23 horas al día.\n\nSe centra en géneros como el techno, el electro, bass music o el drum and bass, así como también el hip-hop. Es organizado por la productora Enter Group, con sede en Barcelona, propiedad de la familia Arnau, dueña de la discoteca fragatina Florida 135.\n\nHasta 2014, fecha en la que dejó de celebrarse durante varios años, contó en las últimas ediciones con una afluencia media de unas 40.000 personas.\n\nEn 2022, tras la cancelación de las ediciones de 2020 y 2021 por la pandemia de COVID-19, volvió a celebrarse congregando a más de 55.000 personas.",
+      "imagen": "/assets/img/monegros.jpg",
+      "lugar": "Desierto de Monegros",
+      "genero": "Electronico",
+      "ciudad": "Huesca",
+      "precio": "200",
+      "fecha": "2023-06-30",
+      "organizador": "Música Azul",
+      "id": 4
     }
   ]
 }

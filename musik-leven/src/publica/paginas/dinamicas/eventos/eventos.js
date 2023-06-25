@@ -23,13 +23,14 @@ const EventList = () => {
   return (
     <div className="event-list">
       <h1>Eventos</h1>
-      <ul>
+      <div className="event-grid">
         {eventos.map((eventItem) => (
-          <li key={eventItem.id}>
+          <div className="event-card" key={eventItem.id}>
+            <img src={eventItem.imagen} alt={eventItem.nombre} />
             <Link to={`/eventos/${eventItem.id}`}>{eventItem.nombre}</Link>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

@@ -1,9 +1,12 @@
 import axios from "../interceptor/Interceptor";
+import Evento from "./modelo/Evento";
+
+const BASE_URL = "http://localhost:3000";
 
 export default class EventService {
   static async getAllEvents() {
     try {
-      const response = await axios.get("http://localhost:3000/eventos");
+      const response = await axios.get(`${BASE_URL}/eventos`);
       return response.data;
     } catch (error) {
       throw error;
@@ -12,7 +15,7 @@ export default class EventService {
 
   static async getEventById(id) {
     try {
-      const response = await axios.get(`http://localhost:3000/eventos/${id}`);
+      const response = await axios.get(`${BASE_URL}/eventos/${id}`);
       return response.data;
     } catch (error) {
       throw error;
@@ -21,7 +24,8 @@ export default class EventService {
 
   static async createEvent(event) {
     try {
-      const response = await axios.post("http://localhost:3000/eventos", event);
+      const newEvent = new Evento(event); 
+      const response = await axios.post(`${BASE_URL}/eventos`, newEvent);
       return response.data;
     } catch (error) {
       throw error;
@@ -30,9 +34,10 @@ export default class EventService {
 
   static async updateEvent(event) {
     try {
+      const updatedEvent = new Evento(event); 
       const response = await axios.put(
-        `http://localhost:3000/eventos/${event.id}`,
-        event
+        `${BASE_URL}/eventos/${updatedEvent.id}`,
+        updatedEvent
       );
       return response.data;
     } catch (error) {
@@ -42,9 +47,7 @@ export default class EventService {
 
   static async deleteEvent(id) {
     try {
-      const response = await axios.delete(
-        `http://localhost:3000/eventos/${id}`
-      );
+      const response = await axios.delete(`${BASE_URL}/eventos/${id}`);
       return response.data;
     } catch (error) {
       throw error;
