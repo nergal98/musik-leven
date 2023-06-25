@@ -28,7 +28,7 @@ function PrivateHomePage() {
   };
 
   return (
-    <div>
+    <div className="private-home-page">
       {/* ... otros componentes */}
       <div className="container__flex">
         {eventos.map((evento) => (

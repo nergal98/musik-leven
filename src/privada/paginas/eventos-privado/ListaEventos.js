@@ -50,18 +50,15 @@ const ListaEventos = () => {
   useEffect(() => {
     setCurrentEventsPage((oldPage) => {
       const newTotalPages = Math.ceil(eventos.length / eventsPerPage);
-      return Math.min(oldPage, newTotalPages);
+      if (oldPage > newTotalPages) {
+        return newTotalPages; // si la página actual es mayor que el total de páginas
+      } else if (oldPage < 1 && newTotalPages > 0) {
+        return 1; // si la página actual es menor que 1
+      } else {
+        return oldPage; // en otros casos, mantén la página actual
+      }
     });
-  }, [eventsPerPage]);
-
-  useEffect(() => {
-    const newTotalPages = Math.ceil(eventos.length / eventsPerPage);
-    if (currentPage > newTotalPages) {
-      setCurrentEventsPage(newTotalPages);
-    } else if (currentPage < 1 && newTotalPages > 0) {
-      setCurrentEventsPage(1);
-    }
-  }, [eventos, eventsPerPage, currentPage]);
+  }, [eventsPerPage, eventos]);
 
   const handleDelete = (index) => {
     // Calcula el índice correcto en la lista de todos los eventos

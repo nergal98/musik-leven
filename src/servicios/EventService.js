@@ -24,7 +24,18 @@ export default class EventService {
 
   static async createEvent(event) {
     try {
-      const newEvent = new Evento(event); 
+      const newEvent = new Evento(
+        event.nombre,
+        event.descripcion,
+        event.imagen,
+        event.lugar,
+        event.genero,
+        event.ciudad,
+        event.precio,
+        event.fecha,
+        event.organizador,
+        event.id
+      );
       const response = await axios.post(`${BASE_URL}/eventos`, newEvent);
       return response.data;
     } catch (error) {
@@ -34,7 +45,18 @@ export default class EventService {
 
   static async updateEvent(event) {
     try {
-      const updatedEvent = new Evento(event); 
+      const updatedEvent = new Evento(
+        event.nombre,
+        event.descripcion,
+        event.imagen,
+        event.lugar,
+        event.genero,
+        event.ciudad,
+        event.precio,
+        event.fecha,
+        event.organizador,
+        event.id
+      );
       const response = await axios.put(
         `${BASE_URL}/eventos/${updatedEvent.id}`,
         updatedEvent

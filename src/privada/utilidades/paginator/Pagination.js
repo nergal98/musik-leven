@@ -22,13 +22,12 @@ const Pagination = ({
   const paginationEndsBeforeLastGroup = lastGroup < totalPages;
 
   const goToNextPage = () => {
-    setCurrentPage((page) => Math.min(page + 1, totalPages));
+    setCurrentPage(Math.min(currentPage + 1, totalPages));
   };
 
   const goToPreviousPage = () => {
-    setCurrentPage((page) => Math.max(page - 1, 1));
+    setCurrentPage(Math.max(currentPage - 1, 1));
   };
-
   const goToFirstPage = () => {
     setCurrentPage(1);
   };

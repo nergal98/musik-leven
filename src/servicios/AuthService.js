@@ -36,10 +36,9 @@ export default class AuthService {
 
   static async signup(user) {
     try {
-      const existingUserResponse = await axios.get(
-        `${BASE_URL}/usuarios`,
-        { params: { email: user.email } }
-      );
+      const existingUserResponse = await axios.get(`${BASE_URL}/usuarios`, {
+        params: { email: user.email },
+      });
       if (existingUserResponse.data.length > 0) {
         throw new Error("Este correo electrónico ya está en uso");
       }
@@ -50,10 +49,7 @@ export default class AuthService {
         user.gender,
         user.password
       );
-      const response = await axios.post(
-        `${BASE_URL}/usuarios`,
-        newUser
-      );
+      const response = await axios.post(`${BASE_URL}/usuarios`, newUser);
       return response.data;
     } catch (error) {
       throw error;
